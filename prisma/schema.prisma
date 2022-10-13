@@ -29,3 +29,12 @@ model User {
   email    String @unique
   password String
 }
+model About{
+  id       Int    @id @default(autoincrement())
+   mission  String
+   manifesto String
+   img1  String
+   img2  String
+   img3  String
+
+}

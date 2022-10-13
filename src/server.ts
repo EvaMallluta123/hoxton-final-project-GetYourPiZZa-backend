@@ -40,6 +40,16 @@ app.get("/pizza", async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 });
+app.get("/about", async (req, res) => {
+    try {
+    // @ts-ignore
+      const about = await prisma.about.findMany()
+      res.send(about);
+    } catch (error) {
+      // @ts-ignore
+      res.status(400).send({ error: error.message });
+    }
+  });
 
 app.post("/sign-up", async (req, res) => {
   try {
