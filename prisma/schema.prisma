@@ -16,18 +16,28 @@ description  String
 image        String
 prices       Int
 type         String
- varients  Varients  @relation(fields: [varientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  varientId Int
+cart        CartItem[]
+
 }
+model CartItem {
+  id       Int      @id @default(autoincrement())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  pizza     Pizza     @relation(fields: [pizzaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId   Int?
+  pizzaId   Int
+  quantity Int      @default(1)
+  time     DateTime @default(now())
+}
+
 model Varients{
   id         Int        @id @default(autoincrement())
   varients   String
-pizza       Pizza[]
 }
 model User {
   id       Int    @id @default(autoincrement())
   email    String @unique
   password String
+  cart        CartItem[]
 }
 model About{
   id       Int    @id @default(autoincrement())
